@@ -34,3 +34,22 @@ class WeightedQuickUnionUF(object):
         return self.find(p) == self.find(q)
 
 
+if __name__ == '__main__':
+    UF = WeightedQuickUnionUF(24)
+
+    for i in xrange(23):
+        UF.union(i, i+1)
+    assert UF.count() == 1
+
+    UF = WeightedQuickUnionUF(33)
+
+    UF.union(0, 1)
+    UF.union(0, 20)
+    assert UF.connected(1, 20) is True
+
+    UF.union(4, 12)
+    UF.union(4, 31)
+    assert UF.connected(12, 31) is True
+
+    UF.union(0, 12)
+    assert UF.connected(4, 1) is True
